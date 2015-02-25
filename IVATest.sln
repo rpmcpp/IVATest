@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IVATest", "IVATest\IVATest.csproj", "{8030E16C-5671-426B-9ED4-F495B2316CC0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{BB0D2B2B-1544-4DF6-89A9-81597DE6A482}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\AzureWebsitePublishModule.psm1 = PublishScripts\AzureWebsitePublishModule.psm1
+		PublishScripts\Publish-WebApplicationWebsite.ps1 = PublishScripts\Publish-WebApplicationWebsite.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{3694FF18-0C35-48F1-9199-07B5062B4880}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Configurations\IVATest-WAWS-dev.json = PublishScripts\Configurations\IVATest-WAWS-dev.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8030E16C-5671-426B-9ED4-F495B2316CC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8030E16C-5671-426B-9ED4-F495B2316CC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8030E16C-5671-426B-9ED4-F495B2316CC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8030E16C-5671-426B-9ED4-F495B2316CC0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3694FF18-0C35-48F1-9199-07B5062B4880} = {BB0D2B2B-1544-4DF6-89A9-81597DE6A482}
+	EndGlobalSection
+EndGlobal

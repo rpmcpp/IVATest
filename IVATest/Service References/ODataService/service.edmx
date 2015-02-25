@@ -1,0 +1,1280 @@
+﻿<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:DataServices m:DataServiceVersion="1.0" m:MaxDataServiceVersion="3.0" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+    <Schema Namespace="MediaModelv21" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <EntityType Name="Country">
+        <Key>
+          <PropertyRef Name="CountryId" />
+        </Key>
+        <Property Name="CountryId" Type="Edm.Int16" Nullable="false" />
+        <Property Name="CountryName" Type="Edm.String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="EntertainmentPrograms" Relationship="MediaModelv21.CountryProgram" ToRole="Program" FromRole="Country" />
+        <NavigationProperty Name="VideoAssets" Relationship="MediaModelv21.CountryAsset" ToRole="Asset" FromRole="Country" />
+        <NavigationProperty Name="ReleaseEvents" Relationship="MediaModelv21.CountryReleaseEvent" ToRole="ReleaseEvent" FromRole="Country" />
+        <NavigationProperty Name="RegionRestriction" Relationship="MediaModelv21.RegionRestrictionCountry" ToRole="RegionRestriction" FromRole="Country" />
+      </EntityType>
+      <EntityType Name="Language">
+        <Key>
+          <PropertyRef Name="LanguageId" />
+        </Key>
+        <Property Name="LanguageId" Type="Edm.Int16" Nullable="false" />
+        <Property Name="LanguageName" Type="Edm.String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="EntertainmentPrograms" Relationship="MediaModelv21.LanguageProgram" ToRole="Program" FromRole="Language" />
+        <NavigationProperty Name="AssetsLanguageSpoken" Relationship="MediaModelv21.LanguageAsset" ToRole="Asset" FromRole="Language" />
+        <NavigationProperty Name="VideoAssets" Relationship="MediaModelv21.LanguageAsset1" ToRole="Asset" FromRole="Language" />
+        <NavigationProperty Name="TitleLu_TitleAka" Relationship="MediaModelv21.FK__TitleLu_T__Targe__05762443" ToRole="TitleLu_TitleAka" FromRole="Language" />
+        <NavigationProperty Name="Captions" Relationship="MediaModelv21.LanguageCaptions" ToRole="Captions" FromRole="Language" />
+      </EntityType>
+      <EntityType Name="ReleaseType">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Byte" Nullable="false" />
+        <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="ReleaseEvents" Relationship="MediaModelv21.ReleaseTypeReleaseEvent" ToRole="ReleaseEvent" FromRole="ReleaseType" />
+      </EntityType>
+      <EntityType Name="SongCategory">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Category" Type="Edm.String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="EntertainmentPrograms" Relationship="MediaModelv21.TitleLu_MusicCategoryProgram" ToRole="Program" FromRole="TitleLu_MusicCategory" />
+      </EntityType>
+      <EntityType Name="SongRating">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Riaa" Type="Edm.String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="EntertainmentPrograms" Relationship="MediaModelv21.TitleLu_MusicRiaaProgram" ToRole="Program" FromRole="TitleLu_MusicRiaa" />
+      </EntityType>
+      <EntityType Name="SongWarning">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Warning" Type="Edm.String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="EntertainmentPrograms" Relationship="MediaModelv21.TitleLu_MusicWarningProgram" ToRole="Program" FromRole="TitleLu_MusicWarning" />
+      </EntityType>
+      <EntityType Name="TvCategory">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int16" Nullable="false" />
+        <Property Name="Category" Type="Edm.String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="EntertainmentPrograms" Relationship="MediaModelv21.TitleLu_TvCategoryProgram" ToRole="Program" FromRole="TitleLu_TvCategory" />
+      </EntityType>
+      <EntityType Name="TvRating">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int16" Nullable="false" />
+        <Property Name="Rating" Type="Edm.String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+        <Property Name="RatingDescription" Type="Edm.String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="EntertainmentPrograms" Relationship="MediaModelv21.TitleLu_TvRatingProgram" ToRole="Program" FromRole="TitleLu_TvRating" />
+      </EntityType>
+      <EntityType Name="MovieCategory">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Category" Type="Edm.String" Nullable="false" MaxLength="28" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="EntertainmentPrograms" Relationship="MediaModelv21.TitleLu_VideoCategoryProgram" ToRole="Program" FromRole="TitleLu_VideoCategory" />
+      </EntityType>
+      <EntityType Name="MovieRating">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Rating" Type="Edm.String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="EntertainmentPrograms" Relationship="MediaModelv21.TitleLu_VideoMpaaProgram" ToRole="Program" FromRole="TitleLu_VideoMpaa" />
+      </EntityType>
+      <EntityType Name="VideoAsset">
+        <Key>
+          <PropertyRef Name="Publishedid" />
+        </Key>
+        <Property Name="Publishedid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Title" Type="Edm.String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        <Property Name="DateCreated" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="DateModified" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="MediaId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="PromotesPublishedId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ProprietaryCustomerID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="StreamLengthinseconds" Type="Edm.Int32" Nullable="false" />
+        <Property Name="MediaReceivedDate" Type="Edm.DateTime" />
+        <Property Name="ExpirationDate" Type="Edm.DateTime" />
+        <Property Name="OkToEncodeAndServe" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="DisplayTitle" Type="Edm.String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        <Property Name="NormalizedTitle" Type="Edm.String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        <Property Name="LanguageSpokenId" Type="Edm.Int16" Nullable="false" />
+        <Property Name="LanguageSubtitledId" Type="Edm.Int16" Nullable="false" />
+        <Property Name="TargetCountryId" Type="Edm.Int16" Nullable="false" />
+        <Property Name="HasContent" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="SourceWidth" Type="Edm.Int16" Nullable="false" />
+        <Property Name="SourceHeight" Type="Edm.Int16" Nullable="false" />
+        <Property Name="HdSource" Type="Edm.String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+        <Property Name="DefaultVideoAsset" Type="Edm.String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+        <Property Name="LastEncodeDate" Type="Edm.DateTime" />
+        <Property Name="Sequence" Type="Edm.Int16" Nullable="false" />
+        <Property Name="OverallSequence" Type="Edm.Int16" Nullable="false" />
+        <Property Name="WarningFlag" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="AllowAds" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="RequiresIvaPlayer" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="CopyrightholderId" Type="Edm.Int16" Nullable="false" />
+        <NavigationProperty Name="EntertainmentProgram" Relationship="MediaModelv21.wsVideoAssetsWSPrograms" ToRole="WSPrograms" FromRole="wsVideoAssets" />
+        <NavigationProperty Name="LanguageSpoken" Relationship="MediaModelv21.LanguageAsset" ToRole="Language" FromRole="Asset" />
+        <NavigationProperty Name="LanguageSubtitled" Relationship="MediaModelv21.LanguageAsset1" ToRole="Language" FromRole="Asset" />
+        <NavigationProperty Name="CountryTarget" Relationship="MediaModelv21.CountryAsset" ToRole="Country" FromRole="Asset" />
+        <NavigationProperty Name="VideoAssetScreenCapture" Relationship="MediaModelv21.VideoAssetVideoAssetScreenCaptures" ToRole="VideoAssetScreenCaptures" FromRole="VideoAsset" />
+        <NavigationProperty Name="Descriptions" Relationship="MediaModelv21.VideoAssetDescription" ToRole="Description" FromRole="VideoAsset" />
+        <NavigationProperty Name="ListsToProgramMaps" Relationship="MediaModelv21.VideoAssetListsToProgramMap" ToRole="ListsToProgramMap" FromRole="VideoAsset" />
+        <NavigationProperty Name="MediaType" Relationship="MediaModelv21.MediaTypeVideoAsset" ToRole="MediaType" FromRole="VideoAsset" />
+        <NavigationProperty Name="Encodes" Relationship="MediaModelv21.VideoAssetEncode" ToRole="Encode" FromRole="VideoAsset" />
+        <NavigationProperty Name="RegionRestrictions" Relationship="MediaModelv21.VideoAssetRegionRestriction" ToRole="RegionRestriction" FromRole="VideoAsset" />
+        <NavigationProperty Name="Captions" Relationship="MediaModelv21.VideoAssetCaptions" ToRole="Captions" FromRole="VideoAsset" />
+      </EntityType>
+      <EntityType Name="RegionRestriction">
+        <Key>
+          <PropertyRef Name="CountryId" />
+          <PropertyRef Name="PublishedId" />
+        </Key>
+        <Property Name="PublishedId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="CountryId" Type="Edm.Int16" Nullable="false" />
+        <Property Name="Allowed" Type="Edm.Boolean" Nullable="false" />
+        <NavigationProperty Name="VideoAsset" Relationship="MediaModelv21.VideoAssetRegionRestriction" ToRole="VideoAsset" FromRole="RegionRestriction" />
+        <NavigationProperty Name="Country" Relationship="MediaModelv21.RegionRestrictionCountry" ToRole="Country" FromRole="RegionRestriction" />
+      </EntityType>
+      <EntityType Name="EntertainmentProgram">
+        <Key>
+          <PropertyRef Name="Publishedid" />
+        </Key>
+        <Property Name="Publishedid" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Title" Type="Edm.String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        <Property Name="DateCreated" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="DateModified" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="FirstReleasedYear" Type="Edm.Int16" Nullable="false" />
+        <Property Name="GameCategoryId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="GameWarningId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="MediaId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="SongAlbumTitle" Type="Edm.String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        <Property Name="SongCategoryId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="SongRiaaId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="SongWarningId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="PromotesPublishedId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ProprietaryCustomerID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="StreamLengthinseconds" Type="Edm.Int32" Nullable="false" />
+        <Property Name="MovieCategoryId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="MovieMpaaId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="MovieWarningId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="BoxOfficeInMillions" Type="Edm.Double" Nullable="false" />
+        <Property Name="MediaReceivedDate" Type="Edm.DateTime" />
+        <Property Name="ExpirationDate" Type="Edm.DateTime" />
+        <Property Name="CountryOforiginId" Type="Edm.Int16" />
+        <Property Name="LanguageId" Type="Edm.Int16" />
+        <Property Name="OfficialSiteUrl" Type="Edm.String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+        <Property Name="OkToEncodeAndServe" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsATitle" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Sequence" Type="Edm.Int16" Nullable="false" />
+        <Property Name="OverallSequence" Type="Edm.Int16" Nullable="false" />
+        <Property Name="DisplayTitle" Type="Edm.String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        <Property Name="NormalizedTitle" Type="Edm.String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        <Property Name="TvCategoryid" Type="Edm.Int16" Nullable="false" />
+        <Property Name="TvRatingId" Type="Edm.Int16" Nullable="false" />
+        <Property Name="CopyrightholderId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="DirectorId" Type="Edm.Int32" DefaultValue="-1" Nullable="false" />
+        <Property Name="Rank1Day" Type="Edm.Int32" />
+        <Property Name="Rank7Day" Type="Edm.Int32" />
+        <Property Name="Rank30Day" Type="Edm.Int32" />
+        <Property Name="RankAllTime" Type="Edm.Int32" />
+        <NavigationProperty Name="VideoAssets" Relationship="MediaModelv21.wsVideoAssetsWSPrograms" ToRole="wsVideoAssets" FromRole="WSPrograms" />
+        <NavigationProperty Name="Language" Relationship="MediaModelv21.LanguageProgram" ToRole="Language" FromRole="Program" />
+        <NavigationProperty Name="SongCategory" Relationship="MediaModelv21.TitleLu_MusicCategoryProgram" ToRole="TitleLu_MusicCategory" FromRole="Program" />
+        <NavigationProperty Name="SongRiaa" Relationship="MediaModelv21.TitleLu_MusicRiaaProgram" ToRole="TitleLu_MusicRiaa" FromRole="Program" />
+        <NavigationProperty Name="SongWarning" Relationship="MediaModelv21.TitleLu_MusicWarningProgram" ToRole="TitleLu_MusicWarning" FromRole="Program" />
+        <NavigationProperty Name="MovieMpaa" Relationship="MediaModelv21.TitleLu_VideoMpaaProgram" ToRole="TitleLu_VideoMpaa" FromRole="Program" />
+        <NavigationProperty Name="MovieCategory" Relationship="MediaModelv21.TitleLu_VideoCategoryProgram" ToRole="TitleLu_VideoCategory" FromRole="Program" />
+        <NavigationProperty Name="TvCategory" Relationship="MediaModelv21.TitleLu_TvCategoryProgram" ToRole="TitleLu_TvCategory" FromRole="Program" />
+        <NavigationProperty Name="TvRating" Relationship="MediaModelv21.TitleLu_TvRatingProgram" ToRole="TitleLu_TvRating" FromRole="Program" />
+        <NavigationProperty Name="Country" Relationship="MediaModelv21.CountryProgram" ToRole="Country" FromRole="Program" />
+        <NavigationProperty Name="ReleaseEvents" Relationship="MediaModelv21.ProgramReleaseEvent" ToRole="ReleaseEvent" FromRole="Program" />
+        <NavigationProperty Name="GameWarning" Relationship="MediaModelv21.GameWarningProgram" ToRole="GameWarning" FromRole="Program" />
+        <NavigationProperty Name="GameCategory" Relationship="MediaModelv21.GameCategoryProgram" ToRole="GameCategory" FromRole="Program" />
+        <NavigationProperty Name="Description" Relationship="MediaModelv21.EntertainmentProgramDescriptions" ToRole="Descriptions" FromRole="EntertainmentProgram" />
+        <NavigationProperty Name="ProgramToPerformerMaps" Relationship="MediaModelv21.EntertainmentProgramProgramToPerformerMap" ToRole="ProgramToPerformerMaps" FromRole="EntertainmentProgram" />
+        <NavigationProperty Name="AlternateIds" Relationship="MediaModelv21.EntertainmentProgramAlternateIdMap" ToRole="AlternateIdMap" FromRole="EntertainmentProgram" />
+        <NavigationProperty Name="VideoAssetScreenCapture" Relationship="MediaModelv21.EntertainmentProgramVideoAssetScreenCapture" ToRole="VideoAssetScreenCapture" FromRole="EntertainmentProgram" />
+        <NavigationProperty Name="TitleAkas" Relationship="MediaModelv21.EntertainmentProgramTitleLu_TitleAka" ToRole="TitleLu_TitleAka" FromRole="EntertainmentProgram" />
+        <NavigationProperty Name="Copyrightholder" Relationship="MediaModelv21.CopyrightholderEntertainmentProgram" ToRole="Copyrightholder" FromRole="EntertainmentProgram" />
+        <NavigationProperty Name="Director" Relationship="MediaModelv21.PerformerEntertainmentProgram" ToRole="Performer" FromRole="EntertainmentProgram" />
+        <NavigationProperty Name="Poster" Relationship="MediaModelv21.EntertainmentProgramPoster" ToRole="Poster" FromRole="EntertainmentProgram" />
+        <NavigationProperty Name="MediaType" Relationship="MediaModelv21.MediaTypeEntertainmentProgram" ToRole="MediaType" FromRole="EntertainmentProgram" />
+        <NavigationProperty Name="RelatedEntertainmentPrograms" Relationship="MediaModelv21.EntertainmentProgramEntertainmentProgram" ToRole="EntertainmentProgram1" FromRole="EntertainmentProgram" />
+        <NavigationProperty Name="ProgramToGameFormatMaps" Relationship="MediaModelv21.EntertainmentProgramProgramToGameFormatMap" ToRole="ProgramToGameFormatMap" FromRole="EntertainmentProgram" />
+      </EntityType>
+      <EntityType Name="Encode">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="PublishedId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="StreamingFlavorId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="DateDigitized" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="rate" Type="Edm.Int32" Nullable="false" />
+        <Property Name="URL" Type="Edm.String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+        <Property Name="FileType" Type="Edm.String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+        <Property Name="RemoteURL" Type="Edm.String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+        <Property Name="ProprietaryCustomerId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="VideoAsset" Relationship="MediaModelv21.VideoAssetEncode" ToRole="VideoAsset" FromRole="Encode" />
+      </EntityType>
+      <EntityType Name="ReleaseEvent">
+        <Key>
+          <PropertyRef Name="ID" />
+          <PropertyRef Name="PublishedId" />
+        </Key>
+        <Property Name="ID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="PublishedId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ReleaseDate" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="DateTimeModified" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="ReleaseTypeId" Type="Edm.Byte" Nullable="false" />
+        <Property Name="ReleaseType" Type="Edm.String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        <Property Name="ReleaseCountry" Type="Edm.String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        <Property Name="ReleaseCountryId" Type="Edm.Int16" Nullable="false" />
+        <NavigationProperty Name="ReleaseType_1" Relationship="MediaModelv21.ReleaseTypeReleaseEvent" ToRole="ReleaseType" FromRole="ReleaseEvent" />
+        <NavigationProperty Name="Country" Relationship="MediaModelv21.CountryReleaseEvent" ToRole="Country" FromRole="ReleaseEvent" />
+        <NavigationProperty Name="EntertainmentProgram" Relationship="MediaModelv21.ProgramReleaseEvent" ToRole="Program" FromRole="ReleaseEvent" />
+      </EntityType>
+      <EntityType Name="GameCategory">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Category" Type="Edm.String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="EntertainmentPrograms" Relationship="MediaModelv21.GameCategoryProgram" ToRole="Program" FromRole="GameCategory" />
+      </EntityType>
+      <EntityType Name="GameWarning">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Warning" Type="Edm.String" Nullable="false" MaxLength="51" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="EntertainmentPrograms" Relationship="MediaModelv21.GameWarningProgram" ToRole="Program" FromRole="GameWarning" />
+      </EntityType>
+      <EntityType Name="Performer">
+        <Key>
+          <PropertyRef Name="PerformerID" />
+        </Key>
+        <Property Name="PerformerID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="LastName" Type="Edm.String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+        <Property Name="FirstName" Type="Edm.String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        <Property Name="FullName" Type="Edm.String" MaxLength="61" FixedLength="false" Unicode="false" />
+        <Property Name="Datemodified" Type="Edm.DateTime" />
+        <Property Name="NormalizedName" Type="Edm.String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="PerformerScreenCapture" Relationship="MediaModelv21.PerformersPerformerScreenCaptures" ToRole="PerformerScreenCaptures" FromRole="Performers" />
+        <NavigationProperty Name="ProgramToPerformerMap" Relationship="MediaModelv21.PerformersWS_ProgramToPerformerMap" ToRole="wsProgramToPerformerMap" FromRole="Performers" />
+        <NavigationProperty Name="EntertainmentProgramsDirected" Relationship="MediaModelv21.PerformerEntertainmentProgram" ToRole="EntertainmentProgram" FromRole="Performer" />
+      </EntityType>
+      <EntityType Name="PerformerScreenCapture">
+        <Key>
+          <PropertyRef Name="PerformerId" />
+        </Key>
+        <Property Name="PerformerId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="DateAdded" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="URL" Type="Edm.String" Nullable="false" MaxLength="8000" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="Performer" Relationship="MediaModelv21.PerformersPerformerScreenCaptures" ToRole="Performers" FromRole="PerformerScreenCaptures" />
+      </EntityType>
+      <EntityType Name="ProgramToPerformerMap">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="PublishedId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="PerformerID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="SortOrder" Type="Edm.Int16" Nullable="false" />
+        <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="Performer" Relationship="MediaModelv21.PerformersWS_ProgramToPerformerMap" ToRole="Performers" FromRole="wsProgramToPerformerMap" />
+        <NavigationProperty Name="EntertainmentProgram" Relationship="MediaModelv21.EntertainmentProgramProgramToPerformerMap" ToRole="EntertainmentProgram" FromRole="ProgramToPerformerMaps" />
+      </EntityType>
+      <EntityType Name="VideoAssetScreenCapture">
+        <Key>
+          <PropertyRef Name="PublishedID" />
+        </Key>
+        <Property Name="PublishedID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="URL" Type="Edm.String" Nullable="false" MaxLength="8000" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="VideoAsset" Relationship="MediaModelv21.VideoAssetVideoAssetScreenCaptures" ToRole="VideoAsset" FromRole="VideoAssetScreenCaptures" />
+        <NavigationProperty Name="EntertainmentProgram" Relationship="MediaModelv21.EntertainmentProgramVideoAssetScreenCapture" ToRole="EntertainmentProgram" FromRole="VideoAssetScreenCapture" />
+      </EntityType>
+      <EntityType Name="Description">
+        <Key>
+          <PropertyRef Name="PublishedId" />
+        </Key>
+        <Property Name="PublishedId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ItemDescription" Type="Edm.String" Nullable="false" MaxLength="5000" FixedLength="false" Unicode="true" />
+        <NavigationProperty Name="EntertainmentProgram" Relationship="MediaModelv21.EntertainmentProgramDescriptions" ToRole="EntertainmentProgram" FromRole="Descriptions" />
+        <NavigationProperty Name="VideoAsset" Relationship="MediaModelv21.VideoAssetDescription" ToRole="VideoAsset" FromRole="Description" />
+      </EntityType>
+      <EntityType Name="MediaType">
+        <Key>
+          <PropertyRef Name="MediaId" />
+        </Key>
+        <Property Name="MediaId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Media" Type="Edm.String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+        <Property Name="ReportDisplayOrder" Type="Edm.Byte" Nullable="false" />
+        <NavigationProperty Name="EntertainmentPrograms" Relationship="MediaModelv21.MediaTypeEntertainmentProgram" ToRole="EntertainmentProgram" FromRole="MediaType" />
+        <NavigationProperty Name="VideoAssets" Relationship="MediaModelv21.MediaTypeVideoAsset" ToRole="VideoAsset" FromRole="MediaType" />
+      </EntityType>
+      <EntityType Name="AlternateIds">
+        <Key>
+          <PropertyRef Name="ID" />
+          <PropertyRef Name="IDType" />
+          <PropertyRef Name="PublishedId" />
+        </Key>
+        <Property Name="PublishedId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="false" />
+        <Property Name="IDType" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Score" Type="Edm.Int32" Nullable="false" />
+        <Property Name="DateAdded" Type="Edm.DateTime" />
+        <NavigationProperty Name="AlternateIdType" Relationship="MediaModelv21.AlternateIdTypeAlternateIdMap" ToRole="AlternateIdType" FromRole="AlternateIdMap" />
+        <NavigationProperty Name="EntertainmentProgram" Relationship="MediaModelv21.EntertainmentProgramAlternateIdMap" ToRole="EntertainmentProgram" FromRole="AlternateIdMap" />
+      </EntityType>
+      <EntityType Name="AlternateIdType">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="IdType" Type="Edm.String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        <Property Name="RequiredLength" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="AlternateIdMaps" Relationship="MediaModelv21.AlternateIdTypeAlternateIdMap" ToRole="AlternateIdMap" FromRole="AlternateIdType" />
+      </EntityType>
+      <EntityType Name="List">
+        <Key>
+          <PropertyRef Name="TitleListId" />
+        </Key>
+        <Property Name="TitleListId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="TitleList" Type="Edm.String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        <Property Name="DateModified" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="PageName" Type="Edm.String" MaxLength="25" FixedLength="false" Unicode="false" />
+        <Property Name="Description" Type="Edm.String" MaxLength="2000" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="ListToProgramMap" Relationship="MediaModelv21.WS_ListsWS_ListsToProgramMap" ToRole="wsListsToProgramMap" FromRole="wsLists" />
+      </EntityType>
+      <EntityType Name="ListToProgramMap">
+        <Key>
+          <PropertyRef Name="PublishedId" />
+          <PropertyRef Name="TitleListId" />
+        </Key>
+        <Property Name="TitleListId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="PublishedId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Sortorder" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="List" Relationship="MediaModelv21.WS_ListsWS_ListsToProgramMap" ToRole="wsLists" FromRole="wsListsToProgramMap" />
+        <NavigationProperty Name="VideoAsset" Relationship="MediaModelv21.VideoAssetListsToProgramMap" ToRole="VideoAsset" FromRole="ListsToProgramMap" />
+      </EntityType>
+      <EntityType Name="HdTitlePhoto">
+        <Key>
+          <PropertyRef Name="PhotoId" />
+        </Key>
+        <Property Name="PhotoId" Type="Edm.String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        <Property Name="Width" Type="Edm.Int16" Nullable="false" />
+        <Property Name="Height" Type="Edm.Int16" Nullable="false" />
+        <Property Name="FileSize" Type="Edm.Int64" Nullable="false" />
+        <Property Name="ParentId" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="false" />
+        <Property Name="DateCreated" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="AspectRatioId" Type="Edm.String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        <Property Name="publishedId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="DefaultTitle" Type="Edm.Boolean" Nullable="false" />
+        <NavigationProperty Name="PerformerMappingToHdPhoto" Relationship="MediaModelv21.FK__Performer__Mappi__4CA38C8F" ToRole="PerformerMappingToHdPhoto" FromRole="HdTitlePhoto" />
+        <NavigationProperty Name="PerformerMappingToHdPhoto1" Relationship="MediaModelv21.FK__Performer__Mappi__4D97B0C8" ToRole="PerformerMappingToHdPhoto" FromRole="HdTitlePhoto" />
+      </EntityType>
+      <EntityType Name="PerformerMappingToHdPhoto">
+        <Key>
+          <PropertyRef Name="MappingId" />
+        </Key>
+        <Property Name="MappingId" Type="Edm.String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        <Property Name="PerformerId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="DateAdded" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="DefaultPerformer" Type="Edm.Boolean" />
+        <NavigationProperty Name="HdTitlePhoto" Relationship="MediaModelv21.FK__Performer__Mappi__4CA38C8F" ToRole="HdTitlePhoto" FromRole="PerformerMappingToHdPhoto" />
+        <NavigationProperty Name="HdTitlePhoto1" Relationship="MediaModelv21.FK__Performer__Mappi__4D97B0C8" ToRole="HdTitlePhoto" FromRole="PerformerMappingToHdPhoto" />
+      </EntityType>
+      <EntityType Name="TitleAka">
+        <Key>
+          <PropertyRef Name="PublishedId" />
+          <PropertyRef Name="Title" />
+          <PropertyRef Name="UniqueID" />
+        </Key>
+        <Property Name="PublishedId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Title" Type="Edm.String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+        <Property Name="UniqueID" Type="Edm.Guid" Nullable="false" />
+        <Property Name="TargetLanguageId" Type="Edm.Int16" Nullable="false" />
+        <NavigationProperty Name="Language" Relationship="MediaModelv21.FK__TitleLu_T__Targe__05762443" ToRole="Language" FromRole="TitleLu_TitleAka" />
+        <NavigationProperty Name="EntertainmentProgram" Relationship="MediaModelv21.EntertainmentProgramTitleLu_TitleAka" ToRole="EntertainmentProgram" FromRole="TitleLu_TitleAka" />
+      </EntityType>
+      <EntityType Name="Copyrightholder">
+        <Key>
+          <PropertyRef Name="CopyrightHolderID" />
+        </Key>
+        <Property Name="CopyrightHolderID" Type="Edm.Int32" Nullable="false" />
+        <Property Name="CopyrightholderName" Type="Edm.String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="EntertainmentPrograms" Relationship="MediaModelv21.CopyrightholderEntertainmentProgram" ToRole="EntertainmentProgram" FromRole="Copyrightholder" />
+      </EntityType>
+      <EntityType Name="IdMap">
+        <Key>
+          <PropertyRef Name="ID" />
+          <PropertyRef Name="IdType" />
+          <PropertyRef Name="PublishedId" />
+        </Key>
+        <Property Name="PublishedId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="false" />
+        <Property Name="IdType" Type="Edm.Int32" Nullable="false" />
+        <Property Name="DateAdded" Type="Edm.DateTime" />
+      </EntityType>
+      <EntityType Name="IdMapSource">
+        <Key>
+          <PropertyRef Name="Idtype" />
+          <PropertyRef Name="PublishedId" />
+        </Key>
+        <Property Name="PublishedId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Idtype" Type="Edm.Int32" Nullable="false" />
+        <Property Name="AlternateIdType" Type="Edm.String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+      </EntityType>
+      <EntityType Name="Poster">
+        <Key>
+          <PropertyRef Name="PublishedId" />
+        </Key>
+        <Property Name="PublishedId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="DateAdded" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="PosterUrl_125" Type="Edm.String" MaxLength="8000" FixedLength="false" Unicode="false" />
+        <Property Name="PosterUrl_172" Type="Edm.String" MaxLength="8000" FixedLength="false" Unicode="false" />
+        <Property Name="PosterUrl_500" Type="Edm.String" />
+        <NavigationProperty Name="EntertainmentProgram" Relationship="MediaModelv21.EntertainmentProgramPoster" ToRole="EntertainmentProgram" FromRole="Poster" />
+      </EntityType>
+      <EntityType Name="ProgramToGameFormatMap">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+        <Property Name="PublishedId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="GameFormatID" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="GameFormat" Relationship="MediaModelv21.GameFormatProgramToGameFormatMap" ToRole="GameFormat" FromRole="ProgramToGameFormatMap" />
+        <NavigationProperty Name="EntertainmentProgram" Relationship="MediaModelv21.EntertainmentProgramProgramToGameFormatMap" ToRole="EntertainmentProgram" FromRole="ProgramToGameFormatMap" />
+      </EntityType>
+      <EntityType Name="GameFormat">
+        <Key>
+          <PropertyRef Name="GameFormatId" />
+        </Key>
+        <Property Name="GameFormatId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="GameFormatName" Type="Edm.String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+        <NavigationProperty Name="ProgramToGameFormatMaps" Relationship="MediaModelv21.GameFormatProgramToGameFormatMap" ToRole="ProgramToGameFormatMap" FromRole="GameFormat" />
+      </EntityType>
+      <EntityType Name="Captions">
+        <Key>
+          <PropertyRef Name="CaptionId" />
+        </Key>
+        <Property Name="CaptionId" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity" xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="DateCreated" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="DateModified" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="LanguageId" Type="Edm.Int16" Nullable="false" />
+        <Property Name="PublishedId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ProprietaryCustomerId" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="VideoAsset" Relationship="MediaModelv21.VideoAssetCaptions" ToRole="VideoAsset" FromRole="Captions" />
+        <NavigationProperty Name="Language" Relationship="MediaModelv21.LanguageCaptions" ToRole="Language" FromRole="Captions" />
+      </EntityType>
+      <Association Name="CountryProgram">
+        <End Type="MediaModelv21.Country" Role="Country" Multiplicity="0..1" />
+        <End Type="MediaModelv21.EntertainmentProgram" Role="Program" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Country">
+            <PropertyRef Name="CountryId" />
+          </Principal>
+          <Dependent Role="Program">
+            <PropertyRef Name="CountryOforiginId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="CountryAsset">
+        <End Type="MediaModelv21.Country" Role="Country" Multiplicity="1" />
+        <End Type="MediaModelv21.VideoAsset" Role="Asset" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Country">
+            <PropertyRef Name="CountryId" />
+          </Principal>
+          <Dependent Role="Asset">
+            <PropertyRef Name="TargetCountryId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="CountryReleaseEvent">
+        <End Type="MediaModelv21.Country" Role="Country" Multiplicity="1" />
+        <End Type="MediaModelv21.ReleaseEvent" Role="ReleaseEvent" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Country">
+            <PropertyRef Name="CountryId" />
+          </Principal>
+          <Dependent Role="ReleaseEvent">
+            <PropertyRef Name="ReleaseCountryId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="RegionRestrictionCountry">
+        <End Type="MediaModelv21.Country" Role="Country" Multiplicity="1" />
+        <End Type="MediaModelv21.RegionRestriction" Role="RegionRestriction" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Country">
+            <PropertyRef Name="CountryId" />
+          </Principal>
+          <Dependent Role="RegionRestriction">
+            <PropertyRef Name="CountryId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="LanguageProgram">
+        <End Type="MediaModelv21.Language" Role="Language" Multiplicity="0..1" />
+        <End Type="MediaModelv21.EntertainmentProgram" Role="Program" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Language">
+            <PropertyRef Name="LanguageId" />
+          </Principal>
+          <Dependent Role="Program">
+            <PropertyRef Name="LanguageId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="LanguageAsset">
+        <End Type="MediaModelv21.Language" Role="Language" Multiplicity="1" />
+        <End Type="MediaModelv21.VideoAsset" Role="Asset" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Language">
+            <PropertyRef Name="LanguageId" />
+          </Principal>
+          <Dependent Role="Asset">
+            <PropertyRef Name="LanguageSpokenId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="LanguageAsset1">
+        <End Type="MediaModelv21.Language" Role="Language" Multiplicity="1" />
+        <End Type="MediaModelv21.VideoAsset" Role="Asset" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Language">
+            <PropertyRef Name="LanguageId" />
+          </Principal>
+          <Dependent Role="Asset">
+            <PropertyRef Name="LanguageSubtitledId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK__TitleLu_T__Targe__05762443">
+        <End Type="MediaModelv21.Language" Role="Language" Multiplicity="1" />
+        <End Type="MediaModelv21.TitleAka" Role="TitleLu_TitleAka" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Language">
+            <PropertyRef Name="LanguageId" />
+          </Principal>
+          <Dependent Role="TitleLu_TitleAka">
+            <PropertyRef Name="TargetLanguageId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="LanguageCaptions">
+        <End Type="MediaModelv21.Language" Role="Language" Multiplicity="1" />
+        <End Type="MediaModelv21.Captions" Role="Captions" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Language">
+            <PropertyRef Name="LanguageId" />
+          </Principal>
+          <Dependent Role="Captions">
+            <PropertyRef Name="LanguageId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="ReleaseTypeReleaseEvent">
+        <End Type="MediaModelv21.ReleaseType" Role="ReleaseType" Multiplicity="1" />
+        <End Type="MediaModelv21.ReleaseEvent" Role="ReleaseEvent" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="ReleaseType">
+            <PropertyRef Name="Id" />
+          </Principal>
+          <Dependent Role="ReleaseEvent">
+            <PropertyRef Name="ReleaseTypeId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="TitleLu_MusicCategoryProgram">
+        <End Type="MediaModelv21.SongCategory" Role="TitleLu_MusicCategory" Multiplicity="1" />
+        <End Type="MediaModelv21.EntertainmentProgram" Role="Program" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="TitleLu_MusicCategory">
+            <PropertyRef Name="Id" />
+          </Principal>
+          <Dependent Role="Program">
+            <PropertyRef Name="SongCategoryId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="TitleLu_MusicRiaaProgram">
+        <End Type="MediaModelv21.SongRating" Role="TitleLu_MusicRiaa" Multiplicity="1" />
+        <End Type="MediaModelv21.EntertainmentProgram" Role="Program" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="TitleLu_MusicRiaa">
+            <PropertyRef Name="Id" />
+          </Principal>
+          <Dependent Role="Program">
+            <PropertyRef Name="SongRiaaId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="TitleLu_MusicWarningProgram">
+        <End Type="MediaModelv21.SongWarning" Role="TitleLu_MusicWarning" Multiplicity="1" />
+        <End Type="MediaModelv21.EntertainmentProgram" Role="Program" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="TitleLu_MusicWarning">
+            <PropertyRef Name="Id" />
+          </Principal>
+          <Dependent Role="Program">
+            <PropertyRef Name="SongWarningId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="TitleLu_TvCategoryProgram">
+        <End Type="MediaModelv21.TvCategory" Role="TitleLu_TvCategory" Multiplicity="1" />
+        <End Type="MediaModelv21.EntertainmentProgram" Role="Program" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="TitleLu_TvCategory">
+            <PropertyRef Name="Id" />
+          </Principal>
+          <Dependent Role="Program">
+            <PropertyRef Name="TvCategoryid" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="TitleLu_TvRatingProgram">
+        <End Type="MediaModelv21.TvRating" Role="TitleLu_TvRating" Multiplicity="1" />
+        <End Type="MediaModelv21.EntertainmentProgram" Role="Program" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="TitleLu_TvRating">
+            <PropertyRef Name="Id" />
+          </Principal>
+          <Dependent Role="Program">
+            <PropertyRef Name="TvRatingId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="TitleLu_VideoCategoryProgram">
+        <End Type="MediaModelv21.MovieCategory" Role="TitleLu_VideoCategory" Multiplicity="1" />
+        <End Type="MediaModelv21.EntertainmentProgram" Role="Program" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="TitleLu_VideoCategory">
+            <PropertyRef Name="Id" />
+          </Principal>
+          <Dependent Role="Program">
+            <PropertyRef Name="MovieCategoryId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="TitleLu_VideoMpaaProgram">
+        <End Type="MediaModelv21.MovieRating" Role="TitleLu_VideoMpaa" Multiplicity="1" />
+        <End Type="MediaModelv21.EntertainmentProgram" Role="Program" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="TitleLu_VideoMpaa">
+            <PropertyRef Name="Id" />
+          </Principal>
+          <Dependent Role="Program">
+            <PropertyRef Name="MovieMpaaId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="wsVideoAssetsWSPrograms">
+        <End Type="MediaModelv21.EntertainmentProgram" Role="WSPrograms" Multiplicity="1" />
+        <End Type="MediaModelv21.VideoAsset" Role="wsVideoAssets" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="WSPrograms">
+            <PropertyRef Name="Publishedid" />
+          </Principal>
+          <Dependent Role="wsVideoAssets">
+            <PropertyRef Name="PromotesPublishedId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="VideoAssetVideoAssetScreenCaptures">
+        <End Type="MediaModelv21.VideoAsset" Role="VideoAsset" Multiplicity="1" />
+        <End Type="MediaModelv21.VideoAssetScreenCapture" Role="VideoAssetScreenCaptures" Multiplicity="0..1" />
+        <ReferentialConstraint>
+          <Principal Role="VideoAsset">
+            <PropertyRef Name="Publishedid" />
+          </Principal>
+          <Dependent Role="VideoAssetScreenCaptures">
+            <PropertyRef Name="PublishedID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="VideoAssetDescription">
+        <End Type="MediaModelv21.VideoAsset" Role="VideoAsset" Multiplicity="1" />
+        <End Type="MediaModelv21.Description" Role="Description" Multiplicity="0..1" />
+        <ReferentialConstraint>
+          <Principal Role="VideoAsset">
+            <PropertyRef Name="Publishedid" />
+          </Principal>
+          <Dependent Role="Description">
+            <PropertyRef Name="PublishedId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="VideoAssetListsToProgramMap">
+        <End Type="MediaModelv21.VideoAsset" Role="VideoAsset" Multiplicity="1" />
+        <End Type="MediaModelv21.ListToProgramMap" Role="ListsToProgramMap" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="VideoAsset">
+            <PropertyRef Name="Publishedid" />
+          </Principal>
+          <Dependent Role="ListsToProgramMap">
+            <PropertyRef Name="PublishedId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="MediaTypeVideoAsset">
+        <End Type="MediaModelv21.MediaType" Role="MediaType" Multiplicity="1" />
+        <End Type="MediaModelv21.VideoAsset" Role="VideoAsset" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="MediaType">
+            <PropertyRef Name="MediaId" />
+          </Principal>
+          <Dependent Role="VideoAsset">
+            <PropertyRef Name="MediaId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="VideoAssetEncode">
+        <End Type="MediaModelv21.VideoAsset" Role="VideoAsset" Multiplicity="1" />
+        <End Type="MediaModelv21.Encode" Role="Encode" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="VideoAsset">
+            <PropertyRef Name="Publishedid" />
+          </Principal>
+          <Dependent Role="Encode">
+            <PropertyRef Name="PublishedId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="VideoAssetRegionRestriction">
+        <End Type="MediaModelv21.VideoAsset" Role="VideoAsset" Multiplicity="1" />
+        <End Type="MediaModelv21.RegionRestriction" Role="RegionRestriction" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="VideoAsset">
+            <PropertyRef Name="Publishedid" />
+          </Principal>
+          <Dependent Role="RegionRestriction">
+            <PropertyRef Name="PublishedId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="VideoAssetCaptions">
+        <End Type="MediaModelv21.VideoAsset" Role="VideoAsset" Multiplicity="1" />
+        <End Type="MediaModelv21.Captions" Role="Captions" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="VideoAsset">
+            <PropertyRef Name="Publishedid" />
+          </Principal>
+          <Dependent Role="Captions">
+            <PropertyRef Name="PublishedId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="ProgramReleaseEvent">
+        <End Type="MediaModelv21.EntertainmentProgram" Role="Program" Multiplicity="1" />
+        <End Type="MediaModelv21.ReleaseEvent" Role="ReleaseEvent" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Program">
+            <PropertyRef Name="Publishedid" />
+          </Principal>
+          <Dependent Role="ReleaseEvent">
+            <PropertyRef Name="PublishedId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="GameWarningProgram">
+        <End Type="MediaModelv21.GameWarning" Role="GameWarning" Multiplicity="1" />
+        <End Type="MediaModelv21.EntertainmentProgram" Role="Program" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="GameWarning">
+            <PropertyRef Name="Id" />
+          </Principal>
+          <Dependent Role="Program">
+            <PropertyRef Name="GameWarningId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="GameCategoryProgram">
+        <End Type="MediaModelv21.GameCategory" Role="GameCategory" Multiplicity="1" />
+        <End Type="MediaModelv21.EntertainmentProgram" Role="Program" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="GameCategory">
+            <PropertyRef Name="Id" />
+          </Principal>
+          <Dependent Role="Program">
+            <PropertyRef Name="GameCategoryId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="EntertainmentProgramDescriptions">
+        <End Type="MediaModelv21.EntertainmentProgram" Role="EntertainmentProgram" Multiplicity="1" />
+        <End Type="MediaModelv21.Description" Role="Descriptions" Multiplicity="0..1" />
+        <ReferentialConstraint>
+          <Principal Role="EntertainmentProgram">
+            <PropertyRef Name="Publishedid" />
+          </Principal>
+          <Dependent Role="Descriptions">
+            <PropertyRef Name="PublishedId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="EntertainmentProgramProgramToPerformerMap">
+        <End Type="MediaModelv21.EntertainmentProgram" Role="EntertainmentProgram" Multiplicity="1" />
+        <End Type="MediaModelv21.ProgramToPerformerMap" Role="ProgramToPerformerMaps" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="EntertainmentProgram">
+            <PropertyRef Name="Publishedid" />
+          </Principal>
+          <Dependent Role="ProgramToPerformerMaps">
+            <PropertyRef Name="PublishedId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="EntertainmentProgramAlternateIdMap">
+        <End Type="MediaModelv21.EntertainmentProgram" Role="EntertainmentProgram" Multiplicity="1" />
+        <End Type="MediaModelv21.AlternateIds" Role="AlternateIdMap" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="EntertainmentProgram">
+            <PropertyRef Name="Publishedid" />
+          </Principal>
+          <Dependent Role="AlternateIdMap">
+            <PropertyRef Name="PublishedId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="EntertainmentProgramVideoAssetScreenCapture">
+        <End Type="MediaModelv21.EntertainmentProgram" Role="EntertainmentProgram" Multiplicity="1" />
+        <End Type="MediaModelv21.VideoAssetScreenCapture" Role="VideoAssetScreenCapture" Multiplicity="0..1" />
+        <ReferentialConstraint>
+          <Principal Role="EntertainmentProgram">
+            <PropertyRef Name="Publishedid" />
+          </Principal>
+          <Dependent Role="VideoAssetScreenCapture">
+            <PropertyRef Name="PublishedID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="EntertainmentProgramTitleLu_TitleAka">
+        <End Type="MediaModelv21.EntertainmentProgram" Role="EntertainmentProgram" Multiplicity="1" />
+        <End Type="MediaModelv21.TitleAka" Role="TitleLu_TitleAka" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="EntertainmentProgram">
+            <PropertyRef Name="Publishedid" />
+          </Principal>
+          <Dependent Role="TitleLu_TitleAka">
+            <PropertyRef Name="PublishedId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="CopyrightholderEntertainmentProgram">
+        <End Type="MediaModelv21.Copyrightholder" Role="Copyrightholder" Multiplicity="1" />
+        <End Type="MediaModelv21.EntertainmentProgram" Role="EntertainmentProgram" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Copyrightholder">
+            <PropertyRef Name="CopyrightHolderID" />
+          </Principal>
+          <Dependent Role="EntertainmentProgram">
+            <PropertyRef Name="CopyrightholderId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="PerformerEntertainmentProgram">
+        <End Type="MediaModelv21.Performer" Role="Performer" Multiplicity="1" />
+        <End Type="MediaModelv21.EntertainmentProgram" Role="EntertainmentProgram" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Performer">
+            <PropertyRef Name="PerformerID" />
+          </Principal>
+          <Dependent Role="EntertainmentProgram">
+            <PropertyRef Name="DirectorId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="EntertainmentProgramPoster">
+        <End Type="MediaModelv21.EntertainmentProgram" Role="EntertainmentProgram" Multiplicity="1" />
+        <End Type="MediaModelv21.Poster" Role="Poster" Multiplicity="1" />
+        <ReferentialConstraint>
+          <Principal Role="EntertainmentProgram">
+            <PropertyRef Name="Publishedid" />
+          </Principal>
+          <Dependent Role="Poster">
+            <PropertyRef Name="PublishedId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="MediaTypeEntertainmentProgram">
+        <End Type="MediaModelv21.MediaType" Role="MediaType" Multiplicity="1" />
+        <End Type="MediaModelv21.EntertainmentProgram" Role="EntertainmentProgram" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="MediaType">
+            <PropertyRef Name="MediaId" />
+          </Principal>
+          <Dependent Role="EntertainmentProgram">
+            <PropertyRef Name="MediaId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="EntertainmentProgramEntertainmentProgram">
+        <End Type="MediaModelv21.EntertainmentProgram" Role="EntertainmentProgram" Multiplicity="1" />
+        <End Type="MediaModelv21.EntertainmentProgram" Role="EntertainmentProgram1" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="EntertainmentProgram">
+            <PropertyRef Name="Publishedid" />
+          </Principal>
+          <Dependent Role="EntertainmentProgram1">
+            <PropertyRef Name="PromotesPublishedId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="EntertainmentProgramProgramToGameFormatMap">
+        <End Type="MediaModelv21.EntertainmentProgram" Role="EntertainmentProgram" Multiplicity="1" />
+        <End Type="MediaModelv21.ProgramToGameFormatMap" Role="ProgramToGameFormatMap" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="EntertainmentProgram">
+            <PropertyRef Name="Publishedid" />
+          </Principal>
+          <Dependent Role="ProgramToGameFormatMap">
+            <PropertyRef Name="PublishedId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="PerformersPerformerScreenCaptures">
+        <End Type="MediaModelv21.Performer" Role="Performers" Multiplicity="1" />
+        <End Type="MediaModelv21.PerformerScreenCapture" Role="PerformerScreenCaptures" Multiplicity="0..1" />
+        <ReferentialConstraint>
+          <Principal Role="Performers">
+            <PropertyRef Name="PerformerID" />
+          </Principal>
+          <Dependent Role="PerformerScreenCaptures">
+            <PropertyRef Name="PerformerId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="PerformersWS_ProgramToPerformerMap">
+        <End Type="MediaModelv21.Performer" Role="Performers" Multiplicity="1" />
+        <End Type="MediaModelv21.ProgramToPerformerMap" Role="wsProgramToPerformerMap" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Performers">
+            <PropertyRef Name="PerformerID" />
+          </Principal>
+          <Dependent Role="wsProgramToPerformerMap">
+            <PropertyRef Name="PerformerID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="AlternateIdTypeAlternateIdMap">
+        <End Type="MediaModelv21.AlternateIdType" Role="AlternateIdType" Multiplicity="1" />
+        <End Type="MediaModelv21.AlternateIds" Role="AlternateIdMap" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="AlternateIdType">
+            <PropertyRef Name="ID" />
+          </Principal>
+          <Dependent Role="AlternateIdMap">
+            <PropertyRef Name="IDType" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="WS_ListsWS_ListsToProgramMap">
+        <End Type="MediaModelv21.List" Role="wsLists" Multiplicity="1" />
+        <End Type="MediaModelv21.ListToProgramMap" Role="wsListsToProgramMap" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="wsLists">
+            <PropertyRef Name="TitleListId" />
+          </Principal>
+          <Dependent Role="wsListsToProgramMap">
+            <PropertyRef Name="TitleListId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK__Performer__Mappi__4CA38C8F">
+        <End Type="MediaModelv21.HdTitlePhoto" Role="HdTitlePhoto" Multiplicity="1" />
+        <End Type="MediaModelv21.PerformerMappingToHdPhoto" Role="PerformerMappingToHdPhoto" Multiplicity="0..1" />
+        <ReferentialConstraint>
+          <Principal Role="HdTitlePhoto">
+            <PropertyRef Name="PhotoId" />
+          </Principal>
+          <Dependent Role="PerformerMappingToHdPhoto">
+            <PropertyRef Name="MappingId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="FK__Performer__Mappi__4D97B0C8">
+        <End Type="MediaModelv21.HdTitlePhoto" Role="HdTitlePhoto" Multiplicity="1" />
+        <End Type="MediaModelv21.PerformerMappingToHdPhoto" Role="PerformerMappingToHdPhoto" Multiplicity="0..1" />
+        <ReferentialConstraint>
+          <Principal Role="HdTitlePhoto">
+            <PropertyRef Name="PhotoId" />
+          </Principal>
+          <Dependent Role="PerformerMappingToHdPhoto">
+            <PropertyRef Name="MappingId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="GameFormatProgramToGameFormatMap">
+        <End Type="MediaModelv21.GameFormat" Role="GameFormat" Multiplicity="1" />
+        <End Type="MediaModelv21.ProgramToGameFormatMap" Role="ProgramToGameFormatMap" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="GameFormat">
+            <PropertyRef Name="GameFormatId" />
+          </Principal>
+          <Dependent Role="ProgramToGameFormatMap">
+            <PropertyRef Name="GameFormatID" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+    </Schema>
+    <Schema Namespace="MediaEF.Public.v21" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <EntityContainer Name="MediaEntitiesV21" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="Countries" EntityType="MediaModelv21.Country" />
+        <EntitySet Name="Languages" EntityType="MediaModelv21.Language" />
+        <EntitySet Name="ReleaseTypes" EntityType="MediaModelv21.ReleaseType" />
+        <EntitySet Name="SongCategories" EntityType="MediaModelv21.SongCategory" />
+        <EntitySet Name="SongRatings" EntityType="MediaModelv21.SongRating" />
+        <EntitySet Name="SongWarnings" EntityType="MediaModelv21.SongWarning" />
+        <EntitySet Name="TvCategories" EntityType="MediaModelv21.TvCategory" />
+        <EntitySet Name="TvRatings" EntityType="MediaModelv21.TvRating" />
+        <EntitySet Name="MovieCategories" EntityType="MediaModelv21.MovieCategory" />
+        <EntitySet Name="MovieRatings" EntityType="MediaModelv21.MovieRating" />
+        <EntitySet Name="VideoAssets" EntityType="MediaModelv21.VideoAsset" />
+        <EntitySet Name="RegionRestrictions" EntityType="MediaModelv21.RegionRestriction" />
+        <EntitySet Name="EntertainmentPrograms" EntityType="MediaModelv21.EntertainmentProgram" />
+        <EntitySet Name="Encodes" EntityType="MediaModelv21.Encode" />
+        <EntitySet Name="ReleaseEvents" EntityType="MediaModelv21.ReleaseEvent" />
+        <EntitySet Name="GameCategories" EntityType="MediaModelv21.GameCategory" />
+        <EntitySet Name="GameWarnings" EntityType="MediaModelv21.GameWarning" />
+        <EntitySet Name="Performers" EntityType="MediaModelv21.Performer" />
+        <EntitySet Name="PerformerScreenCaptures" EntityType="MediaModelv21.PerformerScreenCapture" />
+        <EntitySet Name="ProgramToPerformerMaps" EntityType="MediaModelv21.ProgramToPerformerMap" />
+        <EntitySet Name="VideoAssetScreenCaptures" EntityType="MediaModelv21.VideoAssetScreenCapture" />
+        <EntitySet Name="Descriptions" EntityType="MediaModelv21.Description" />
+        <EntitySet Name="MediaTypes" EntityType="MediaModelv21.MediaType" />
+        <EntitySet Name="AlternateIds" EntityType="MediaModelv21.AlternateIds" />
+        <EntitySet Name="AlternateIdTypes" EntityType="MediaModelv21.AlternateIdType" />
+        <EntitySet Name="Lists" EntityType="MediaModelv21.List" />
+        <EntitySet Name="ListToProgramMaps" EntityType="MediaModelv21.ListToProgramMap" />
+        <EntitySet Name="HdTitlePhotos" EntityType="MediaModelv21.HdTitlePhoto" />
+        <EntitySet Name="PerformerMappingToHdPhotos" EntityType="MediaModelv21.PerformerMappingToHdPhoto" />
+        <EntitySet Name="TitleAkas" EntityType="MediaModelv21.TitleAka" />
+        <EntitySet Name="Copyrightholders" EntityType="MediaModelv21.Copyrightholder" />
+        <EntitySet Name="IdMaps" EntityType="MediaModelv21.IdMap" />
+        <EntitySet Name="IdMapSources" EntityType="MediaModelv21.IdMapSource" />
+        <EntitySet Name="Posters" EntityType="MediaModelv21.Poster" />
+        <EntitySet Name="ProgramToGameFormatMaps" EntityType="MediaModelv21.ProgramToGameFormatMap" />
+        <EntitySet Name="GameFormats" EntityType="MediaModelv21.GameFormat" />
+        <EntitySet Name="Captions" EntityType="MediaModelv21.Captions" />
+        <FunctionImport Name="GetEncodes" ReturnType="Collection(MediaModelv21.Encode)" EntitySet="Encodes" m:HttpMethod="GET">
+          <Parameter Name="PublishedID" Type="Edm.Int32" Nullable="false" />
+          <Parameter Name="ReportTag" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetEntertainmentProgramByPinpointId" ReturnType="Collection(MediaModelv21.EntertainmentProgram)" EntitySet="EntertainmentPrograms" m:HttpMethod="GET">
+          <Parameter Name="ID" Type="Edm.String" />
+          <Parameter Name="IdType" Type="Edm.Int32" Nullable="false" />
+        </FunctionImport>
+        <FunctionImport Name="GetHourlyRequestsForDeveloperId" ReturnType="Edm.Int32" m:HttpMethod="GET" />
+        <FunctionImport Name="GetHourlyRequestsForIpAddress" ReturnType="Edm.Int32" m:HttpMethod="GET" />
+        <FunctionImport Name="GetEntertainmentProgramByPinpointIdQueryable" ReturnType="Collection(MediaModelv21.EntertainmentProgram)" EntitySet="EntertainmentPrograms" m:HttpMethod="GET">
+          <Parameter Name="ID" Type="Edm.String" />
+          <Parameter Name="IdType" Type="Edm.Int32" Nullable="false" />
+        </FunctionImport>
+        <FunctionImport Name="GetVideoAssetByPinpointIdQueryable" ReturnType="Collection(MediaModelv21.VideoAsset)" EntitySet="VideoAssets" m:HttpMethod="GET">
+          <Parameter Name="ID" Type="Edm.String" />
+          <Parameter Name="IdType" Type="Edm.Int32" Nullable="false" />
+        </FunctionImport>
+        <FunctionImport Name="GetVideoAssetByPinpointId" ReturnType="Collection(MediaModelv21.VideoAsset)" EntitySet="VideoAssets" m:HttpMethod="GET">
+          <Parameter Name="ID" Type="Edm.String" />
+          <Parameter Name="IdType" Type="Edm.Int32" Nullable="false" />
+        </FunctionImport>
+        <AssociationSet Name="CountryProgram" Association="MediaModelv21.CountryProgram">
+          <End Role="Country" EntitySet="Countries" />
+          <End Role="Program" EntitySet="EntertainmentPrograms" />
+        </AssociationSet>
+        <AssociationSet Name="CountryAsset" Association="MediaModelv21.CountryAsset">
+          <End Role="Country" EntitySet="Countries" />
+          <End Role="Asset" EntitySet="VideoAssets" />
+        </AssociationSet>
+        <AssociationSet Name="CountryReleaseEvent" Association="MediaModelv21.CountryReleaseEvent">
+          <End Role="Country" EntitySet="Countries" />
+          <End Role="ReleaseEvent" EntitySet="ReleaseEvents" />
+        </AssociationSet>
+        <AssociationSet Name="RegionRestrictionCountry" Association="MediaModelv21.RegionRestrictionCountry">
+          <End Role="Country" EntitySet="Countries" />
+          <End Role="RegionRestriction" EntitySet="RegionRestrictions" />
+        </AssociationSet>
+        <AssociationSet Name="LanguageProgram" Association="MediaModelv21.LanguageProgram">
+          <End Role="Language" EntitySet="Languages" />
+          <End Role="Program" EntitySet="EntertainmentPrograms" />
+        </AssociationSet>
+        <AssociationSet Name="LanguageAsset" Association="MediaModelv21.LanguageAsset">
+          <End Role="Language" EntitySet="Languages" />
+          <End Role="Asset" EntitySet="VideoAssets" />
+        </AssociationSet>
+        <AssociationSet Name="LanguageAsset1" Association="MediaModelv21.LanguageAsset1">
+          <End Role="Language" EntitySet="Languages" />
+          <End Role="Asset" EntitySet="VideoAssets" />
+        </AssociationSet>
+        <AssociationSet Name="FK__TitleLu_T__Targe__05762443" Association="MediaModelv21.FK__TitleLu_T__Targe__05762443">
+          <End Role="Language" EntitySet="Languages" />
+          <End Role="TitleLu_TitleAka" EntitySet="TitleAkas" />
+        </AssociationSet>
+        <AssociationSet Name="LanguageCaptions" Association="MediaModelv21.LanguageCaptions">
+          <End Role="Language" EntitySet="Languages" />
+          <End Role="Captions" EntitySet="Captions" />
+        </AssociationSet>
+        <AssociationSet Name="ReleaseTypeReleaseEvent" Association="MediaModelv21.ReleaseTypeReleaseEvent">
+          <End Role="ReleaseType" EntitySet="ReleaseTypes" />
+          <End Role="ReleaseEvent" EntitySet="ReleaseEvents" />
+        </AssociationSet>
+        <AssociationSet Name="TitleLu_MusicCategoryProgram" Association="MediaModelv21.TitleLu_MusicCategoryProgram">
+          <End Role="TitleLu_MusicCategory" EntitySet="SongCategories" />
+          <End Role="Program" EntitySet="EntertainmentPrograms" />
+        </AssociationSet>
+        <AssociationSet Name="TitleLu_MusicRiaaProgram" Association="MediaModelv21.TitleLu_MusicRiaaProgram">
+          <End Role="TitleLu_MusicRiaa" EntitySet="SongRatings" />
+          <End Role="Program" EntitySet="EntertainmentPrograms" />
+        </AssociationSet>
+        <AssociationSet Name="TitleLu_MusicWarningProgram" Association="MediaModelv21.TitleLu_MusicWarningProgram">
+          <End Role="TitleLu_MusicWarning" EntitySet="SongWarnings" />
+          <End Role="Program" EntitySet="EntertainmentPrograms" />
+        </AssociationSet>
+        <AssociationSet Name="TitleLu_TvCategoryProgram" Association="MediaModelv21.TitleLu_TvCategoryProgram">
+          <End Role="TitleLu_TvCategory" EntitySet="TvCategories" />
+          <End Role="Program" EntitySet="EntertainmentPrograms" />
+        </AssociationSet>
+        <AssociationSet Name="TitleLu_TvRatingProgram" Association="MediaModelv21.TitleLu_TvRatingProgram">
+          <End Role="TitleLu_TvRating" EntitySet="TvRatings" />
+          <End Role="Program" EntitySet="EntertainmentPrograms" />
+        </AssociationSet>
+        <AssociationSet Name="TitleLu_VideoCategoryProgram" Association="MediaModelv21.TitleLu_VideoCategoryProgram">
+          <End Role="TitleLu_VideoCategory" EntitySet="MovieCategories" />
+          <End Role="Program" EntitySet="EntertainmentPrograms" />
+        </AssociationSet>
+        <AssociationSet Name="TitleLu_VideoMpaaProgram" Association="MediaModelv21.TitleLu_VideoMpaaProgram">
+          <End Role="TitleLu_VideoMpaa" EntitySet="MovieRatings" />
+          <End Role="Program" EntitySet="EntertainmentPrograms" />
+        </AssociationSet>
+        <AssociationSet Name="wsVideoAssetsWSPrograms" Association="MediaModelv21.wsVideoAssetsWSPrograms">
+          <End Role="wsVideoAssets" EntitySet="VideoAssets" />
+          <End Role="WSPrograms" EntitySet="EntertainmentPrograms" />
+        </AssociationSet>
+        <AssociationSet Name="VideoAssetVideoAssetScreenCaptures" Association="MediaModelv21.VideoAssetVideoAssetScreenCaptures">
+          <End Role="VideoAsset" EntitySet="VideoAssets" />
+          <End Role="VideoAssetScreenCaptures" EntitySet="VideoAssetScreenCaptures" />
+        </AssociationSet>
+        <AssociationSet Name="VideoAssetDescription" Association="MediaModelv21.VideoAssetDescription">
+          <End Role="VideoAsset" EntitySet="VideoAssets" />
+          <End Role="Description" EntitySet="Descriptions" />
+        </AssociationSet>
+        <AssociationSet Name="VideoAssetListsToProgramMap" Association="MediaModelv21.VideoAssetListsToProgramMap">
+          <End Role="VideoAsset" EntitySet="VideoAssets" />
+          <End Role="ListsToProgramMap" EntitySet="ListToProgramMaps" />
+        </AssociationSet>
+        <AssociationSet Name="MediaTypeVideoAsset" Association="MediaModelv21.MediaTypeVideoAsset">
+          <End Role="VideoAsset" EntitySet="VideoAssets" />
+          <End Role="MediaType" EntitySet="MediaTypes" />
+        </AssociationSet>
+        <AssociationSet Name="VideoAssetEncode" Association="MediaModelv21.VideoAssetEncode">
+          <End Role="VideoAsset" EntitySet="VideoAssets" />
+          <End Role="Encode" EntitySet="Encodes" />
+        </AssociationSet>
+        <AssociationSet Name="VideoAssetRegionRestriction" Association="MediaModelv21.VideoAssetRegionRestriction">
+          <End Role="VideoAsset" EntitySet="VideoAssets" />
+          <End Role="RegionRestriction" EntitySet="RegionRestrictions" />
+        </AssociationSet>
+        <AssociationSet Name="VideoAssetCaptions" Association="MediaModelv21.VideoAssetCaptions">
+          <End Role="VideoAsset" EntitySet="VideoAssets" />
+          <End Role="Captions" EntitySet="Captions" />
+        </AssociationSet>
+        <AssociationSet Name="ProgramReleaseEvent" Association="MediaModelv21.ProgramReleaseEvent">
+          <End Role="Program" EntitySet="EntertainmentPrograms" />
+          <End Role="ReleaseEvent" EntitySet="ReleaseEvents" />
+        </AssociationSet>
+        <AssociationSet Name="GameWarningProgram" Association="MediaModelv21.GameWarningProgram">
+          <End Role="Program" EntitySet="EntertainmentPrograms" />
+          <End Role="GameWarning" EntitySet="GameWarnings" />
+        </AssociationSet>
+        <AssociationSet Name="GameCategoryProgram" Association="MediaModelv21.GameCategoryProgram">
+          <End Role="Program" EntitySet="EntertainmentPrograms" />
+          <End Role="GameCategory" EntitySet="GameCategories" />
+        </AssociationSet>
+        <AssociationSet Name="EntertainmentProgramDescriptions" Association="MediaModelv21.EntertainmentProgramDescriptions">
+          <End Role="EntertainmentProgram" EntitySet="EntertainmentPrograms" />
+          <End Role="Descriptions" EntitySet="Descriptions" />
+        </AssociationSet>
+        <AssociationSet Name="EntertainmentProgramProgramToPerformerMap" Association="MediaModelv21.EntertainmentProgramProgramToPerformerMap">
+          <End Role="EntertainmentProgram" EntitySet="EntertainmentPrograms" />
+          <End Role="ProgramToPerformerMaps" EntitySet="ProgramToPerformerMaps" />
+        </AssociationSet>
+        <AssociationSet Name="EntertainmentProgramAlternateIds" Association="MediaModelv21.EntertainmentProgramAlternateIdMap">
+          <End Role="EntertainmentProgram" EntitySet="EntertainmentPrograms" />
+          <End Role="AlternateIdMap" EntitySet="AlternateIds" />
+        </AssociationSet>
+        <AssociationSet Name="EntertainmentProgramVideoAssetScreenCapture" Association="MediaModelv21.EntertainmentProgramVideoAssetScreenCapture">
+          <End Role="EntertainmentProgram" EntitySet="EntertainmentPrograms" />
+          <End Role="VideoAssetScreenCapture" EntitySet="VideoAssetScreenCaptures" />
+        </AssociationSet>
+        <AssociationSet Name="EntertainmentProgramTitleLu_TitleAka" Association="MediaModelv21.EntertainmentProgramTitleLu_TitleAka">
+          <End Role="EntertainmentProgram" EntitySet="EntertainmentPrograms" />
+          <End Role="TitleLu_TitleAka" EntitySet="TitleAkas" />
+        </AssociationSet>
+        <AssociationSet Name="CopyrightholderEntertainmentProgram" Association="MediaModelv21.CopyrightholderEntertainmentProgram">
+          <End Role="EntertainmentProgram" EntitySet="EntertainmentPrograms" />
+          <End Role="Copyrightholder" EntitySet="Copyrightholders" />
+        </AssociationSet>
+        <AssociationSet Name="PerformerEntertainmentProgram" Association="MediaModelv21.PerformerEntertainmentProgram">
+          <End Role="EntertainmentProgram" EntitySet="EntertainmentPrograms" />
+          <End Role="Performer" EntitySet="Performers" />
+        </AssociationSet>
+        <AssociationSet Name="EntertainmentProgramPoster" Association="MediaModelv21.EntertainmentProgramPoster">
+          <End Role="EntertainmentProgram" EntitySet="EntertainmentPrograms" />
+          <End Role="Poster" EntitySet="Posters" />
+        </AssociationSet>
+        <AssociationSet Name="MediaTypeEntertainmentProgram" Association="MediaModelv21.MediaTypeEntertainmentProgram">
+          <End Role="EntertainmentProgram" EntitySet="EntertainmentPrograms" />
+          <End Role="MediaType" EntitySet="MediaTypes" />
+        </AssociationSet>
+        <AssociationSet Name="EntertainmentProgramEntertainmentProgram" Association="MediaModelv21.EntertainmentProgramEntertainmentProgram">
+          <End Role="EntertainmentProgram" EntitySet="EntertainmentPrograms" />
+          <End Role="EntertainmentProgram1" EntitySet="EntertainmentPrograms" />
+        </AssociationSet>
+        <AssociationSet Name="EntertainmentProgramProgramToGameFormatMap" Association="MediaModelv21.EntertainmentProgramProgramToGameFormatMap">
+          <End Role="EntertainmentProgram" EntitySet="EntertainmentPrograms" />
+          <End Role="ProgramToGameFormatMap" EntitySet="ProgramToGameFormatMaps" />
+        </AssociationSet>
+        <AssociationSet Name="PerformersPerformerScreenCaptures" Association="MediaModelv21.PerformersPerformerScreenCaptures">
+          <End Role="Performers" EntitySet="Performers" />
+          <End Role="PerformerScreenCaptures" EntitySet="PerformerScreenCaptures" />
+        </AssociationSet>
+        <AssociationSet Name="PerformersWS_ProgramToPerformerMap" Association="MediaModelv21.PerformersWS_ProgramToPerformerMap">
+          <End Role="Performers" EntitySet="Performers" />
+          <End Role="wsProgramToPerformerMap" EntitySet="ProgramToPerformerMaps" />
+        </AssociationSet>
+        <AssociationSet Name="AlternateIdTypeAlternateIds" Association="MediaModelv21.AlternateIdTypeAlternateIdMap">
+          <End Role="AlternateIdMap" EntitySet="AlternateIds" />
+          <End Role="AlternateIdType" EntitySet="AlternateIdTypes" />
+        </AssociationSet>
+        <AssociationSet Name="WS_ListsWS_ListsToProgramMap" Association="MediaModelv21.WS_ListsWS_ListsToProgramMap">
+          <End Role="wsLists" EntitySet="Lists" />
+          <End Role="wsListsToProgramMap" EntitySet="ListToProgramMaps" />
+        </AssociationSet>
+        <AssociationSet Name="FK__Performer__Mappi__4CA38C8F" Association="MediaModelv21.FK__Performer__Mappi__4CA38C8F">
+          <End Role="HdTitlePhoto" EntitySet="HdTitlePhotos" />
+          <End Role="PerformerMappingToHdPhoto" EntitySet="PerformerMappingToHdPhotos" />
+        </AssociationSet>
+        <AssociationSet Name="FK__Performer__Mappi__4D97B0C8" Association="MediaModelv21.FK__Performer__Mappi__4D97B0C8">
+          <End Role="HdTitlePhoto" EntitySet="HdTitlePhotos" />
+          <End Role="PerformerMappingToHdPhoto" EntitySet="PerformerMappingToHdPhotos" />
+        </AssociationSet>
+        <AssociationSet Name="GameFormatProgramToGameFormatMap" Association="MediaModelv21.GameFormatProgramToGameFormatMap">
+          <End Role="ProgramToGameFormatMap" EntitySet="ProgramToGameFormatMaps" />
+          <End Role="GameFormat" EntitySet="GameFormats" />
+        </AssociationSet>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>
